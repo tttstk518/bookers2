@@ -1,0 +1,31 @@
+<%= render 'list',user: @user, book: @newbook %>
+<div class="col-md-8 offset-md-1">
+<h2>Book detail</h2>
+<table class="table table-hover table-inverse">
+  <thead>
+    <tr>
+      <td>
+        <%= link_to user_path(@user.id) do %>
+        <%= image_tag @user.get_profile_image(100,100) %>
+        <%= @user.name %>
+        <% end %>
+        </td>
+      <td><%= link_to @book.title, book_path(@book.id) %></td>
+      <td><%= @book.body %></td>
+      <% if @user.id == current_user.id %>
+      <td>
+        <%= link_to edit_book_path(@book.id) do %>
+        <button type="button" class="btn btn-sm btn-success">Edit</button>
+        <% end %>
+      </td>
+      <td>
+        <%= link_to book_path(@book.id) , method: :delete, "data-confirm" => "Are you sure?" do %>
+        <button type="button" class="btn btn-sm btn-danger">Destroy</button>
+        <% end %>
+      </td>
+      <% end %>
+    </tr>
+  </thead>
+</table>
+</div>
+
